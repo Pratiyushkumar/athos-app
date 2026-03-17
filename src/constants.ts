@@ -1,5 +1,5 @@
 export const API_BASE_URL =
-  'http://api.searchspring.net/api/search/search.json';
+  'https://api.searchspring.net/api/search/search.json';
 
 export const DEFAULT_SITE_ID = 'scmq7n';
 
