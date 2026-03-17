@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import type { HeaderProps } from '../types';
 
-export default function Header({ cartCount, title, children }: HeaderProps) {
+const Header = memo(function Header({ cartCount, title, children }: HeaderProps) {
   return (
     <header className='mb-12 relative'>
       <div className='sticky top-4 z-50 bg-white/80 backdrop-blur-md border border-stone-200/60 rounded-full px-6 py-4 shadow-sm max-w-[1100px] mx-auto flex items-center justify-between'>
@@ -54,4 +55,6 @@ export default function Header({ cartCount, title, children }: HeaderProps) {
     </header>
   );
 }
+)
 
+export default Header;

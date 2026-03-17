@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Pagination from './components/Pagination';
 import { useSearch } from './hooks/useSearch';
 import type { Product } from './types';
@@ -20,25 +20,25 @@ function App() {
     fetchResults,
   } = useSearch();
 
-  const handleSubmit = (e: React.SyntheticEvent) => {
+  const handleSubmit = useCallback((e: React.SyntheticEvent) => {
     e.preventDefault();
     fetchResults(query, 1);
-  };
+  }, [query, fetchResults])
 
-  const handleSuggestionClick = (term: string) => {
+  const handleSuggestionClick = useCallback((term: string) => {
     setQuery(term);
     fetchResults(term, 1);
-  };
+  }, [fetchResults]);
 
-  const addToCart = (product: Product) => {
+  const addToCart = useCallback((product: Product) => {
     setCart((prev) => [...prev, product]);
-  };
+  }, [])
 
-  const handlePageChange = (newPage: number) => {
+  const handlePageChange = useCallback((newPage: number) => {
     if (pagination && newPage >= 1 && newPage <= pagination.totalPages) {
       fetchResults(query, newPage);
     }
-  };
+  }, [pagination, query, fetchResults]);
 
   return (
     <div className='max-w-[1200px] mx-auto px-4 py-8'>

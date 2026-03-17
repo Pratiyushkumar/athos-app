@@ -1,8 +1,8 @@
-import React from 'react';
+import { memo } from 'react';
 import type { PaginationProps } from '../types';
 import { MAX_PAGE_TO_SHOW } from '../constants';
 
-const Pagination: React.FC<PaginationProps> = ({
+const Pagination = memo<PaginationProps>(({
   pagination,
   onPageChange,
 }) => {
@@ -50,11 +50,10 @@ const Pagination: React.FC<PaginationProps> = ({
         {pages.map((p) => (
           <button
             key={p}
-            className={`w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full cursor-pointer font-bold transition-all duration-200 border text-sm sm:text-base ${
-              p === currentPage
-                ? 'bg-[#E2725B] text-white border-[#E2725B] shadow-md shadow-[#E2725B]/20'
-                : 'bg-white hover:bg-stone-50 border-stone-200/80 text-stone-700 hover:border-stone-300'
-            }`}
+            className={`w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full cursor-pointer font-bold transition-all duration-200 border text-sm sm:text-base ${p === currentPage
+              ? 'bg-[#E2725B] text-white border-[#E2725B] shadow-md shadow-[#E2725B]/20'
+              : 'bg-white hover:bg-stone-50 border-stone-200/80 text-stone-700 hover:border-stone-300'
+              }`}
             onClick={() => onPageChange(p)}
           >
             {p}
@@ -83,7 +82,7 @@ const Pagination: React.FC<PaginationProps> = ({
       </button>
     </div>
   );
-};
+});
 
 export default Pagination;
 

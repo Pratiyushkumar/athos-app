@@ -1,22 +1,16 @@
+import { memo } from 'react';
 import type { ProductCardProps } from '../types';
+import { checkMsrp } from '../utils';
 
-export default function ProductCard({
+const ProductCard = memo(function ProductCard({
   product,
   onAddToCart,
 }: ProductCardProps) {
-  const checkMsrp = (price?: string, msrp?: string): boolean => {
-    if (!msrp || !price) return false;
-    const priceNum = parseFloat(price);
-    const msrpNum = parseFloat(msrp);
-    return !isNaN(priceNum) && !isNaN(msrpNum) && msrpNum > priceNum;
-  };
-
   const hasDiscount = checkMsrp(product.price, product.msrp);
 
   return (
     <div
       className='group bg-white rounded-3xl overflow-hidden shadow-sm border border-stone-200/60 transition-all duration-300 flex flex-col hover:-translate-y-2 hover:shadow-xl hover:border-stone-300'
-      key={product.id}
     >
       <div className='w-full aspect-[3/4] overflow-hidden relative bg-stone-100'>
         <img
@@ -71,5 +65,6 @@ export default function ProductCard({
       </div>
     </div>
   );
-}
+});
 
+export default ProductCard;

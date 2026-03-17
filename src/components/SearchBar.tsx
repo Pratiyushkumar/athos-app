@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import type { SearchBarProps } from '../types';
 
-export default function SearchBar({
+const SearchBar = memo(function SearchBar({
   query,
   setQuery,
   onSubmit,
@@ -48,5 +49,7 @@ export default function SearchBar({
       </button>
     </form>
   );
-}
+});
+
+export default SearchBar;
 

@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import type { SuggestionsProps } from '../types';
 
-export default function Suggestions({
+const Suggestions = memo(function Suggestions({
   suggestions,
   onSuggestionClick,
   loading,
@@ -22,5 +23,6 @@ export default function Suggestions({
       ))}
     </div>
   );
-}
+});
 
+export default Suggestions;
